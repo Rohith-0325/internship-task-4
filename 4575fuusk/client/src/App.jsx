@@ -172,6 +172,7 @@ function InternshipDetails() {
   }
 
   if (loading) return <main className="page"><p>Loading details...</p></main>;
+
   if (error || !internship) {
     return (
       <main className="page">
@@ -185,9 +186,11 @@ function InternshipDetails() {
     <main className="page details-layout">
       <section className="details-panel">
         <Link to="/" className="text-link">← All internships</Link>
+
         <div className="company-icon large">
           {internship.company.charAt(0)}
         </div>
+
         <span className="eyebrow">{internship.company}</span>
         <h1>{internship.title}</h1>
         <p className="description">{internship.description}</p>
@@ -199,6 +202,7 @@ function InternshipDetails() {
         </div>
 
         <h3>Skills you'll work with</h3>
+
         <div className="skills">
           {internship.skills.map((skill) => (
             <span className="skill" key={skill}>{skill}</span>
@@ -209,7 +213,9 @@ function InternshipDetails() {
       <section className="form-panel">
         <span className="eyebrow">TAKE THE NEXT STEP</span>
         <h2>Apply for this internship</h2>
-        <p className="muted">Fill in your details to submit your application.</p>
+        <p className="muted">
+          Fill in your details to submit your application.
+        </p>
 
         <form onSubmit={handleSubmit}>
           <label htmlFor="studentName">Full name</label>
@@ -282,7 +288,10 @@ function Applications() {
 
     try {
       const response = await fetch(`${API_URL}/api/applications`);
-      if (!response.ok) throw new Error('Unable to load applications.');
+
+      if (!response.ok) {
+        throw new Error('Unable to load applications.');
+      }
 
       const data = await response.json();
       setApplications(data);
@@ -304,8 +313,11 @@ function Applications() {
           <div>
             <span className="eyebrow">APPLICATION TRACKER</span>
             <h1>Submitted applications</h1>
-            <p className="muted">Review applications saved in the database.</p>
+            <p className="muted">
+              Review applications saved in the database.
+            </p>
           </div>
+
           <button className="button secondary" onClick={loadApplications}>
             Refresh
           </button>
@@ -318,7 +330,9 @@ function Applications() {
           <div className="empty-state">
             <h3>No applications yet</h3>
             <p>Explore internships and submit your first application.</p>
-            <Link to="/" className="button primary">Explore internships</Link>
+            <Link to="/" className="button primary">
+              Explore internships
+            </Link>
           </div>
         )}
 
@@ -334,6 +348,7 @@ function Applications() {
                   <th>Applied on</th>
                 </tr>
               </thead>
+
               <tbody>
                 {applications.map((application) => (
                   <tr key={application._id}>
@@ -361,7 +376,9 @@ function NotFound() {
   return (
     <main className="page empty-state">
       <h1>Page not found</h1>
-      <Link to="/" className="button primary">Back to home</Link>
+      <Link to="/" className="button primary">
+        Back to home
+      </Link>
     </main>
   );
 }
@@ -372,8 +389,10 @@ function Portal() {
       <header className="site-header">
         <div className="header-inner">
           <Link to="/" className="brand">
-            <span className="brand-mark">S</span>
-            <span>Intern<span className="brand-accent">Sphere</span></span>
+            <span className="brand-mark">IP</span>
+            <span>
+              Internship <span className="brand-accent">Portal</span>
+            </span>
           </Link>
 
           <nav>
@@ -381,7 +400,9 @@ function Portal() {
             <Link to="/applications">Applications</Link>
           </nav>
 
-          <a href="#internships" className="header-cta">Find an internship ↗</a>
+          <a href="#internships" className="header-cta">
+            Find an internship ↗
+          </a>
         </div>
       </header>
 
@@ -394,9 +415,12 @@ function Portal() {
 
       <footer className="site-footer">
         <Link to="/" className="brand">
-          <span className="brand-mark">S</span>
-          <span>Intern<span className="brand-accent">Sphere</span></span>
+          <span className="brand-mark">IP</span>
+          <span>
+            Internship <span className="brand-accent">Portal</span>
+          </span>
         </Link>
+
         <p>Connecting students with opportunities to grow.</p>
       </footer>
     </>
